@@ -1,6 +1,6 @@
 # Where's The Stream?
 #### A video streaming service finder web app
-#### Built using Python & Flask!
+#### Built using Python & Flask
 
 ###### Screenshot
 ![Search](https://user-images.githubusercontent.com/23509634/177607431-b70b3bee-d8fa-404c-aaeb-288eb8ad0e6c.png)
