@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Where's The Stream?</title>
+        <!-- Materialize CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <!-- Materialize Icons -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!-- Static CSS -->
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}">
+    </head>
+    <body class="blue-grey darken-4 cyan-text text-lighten-5">
+        <nav>
+            <div class="nav-wrapper deep-orange lighten-1">
+                <a href="/" class="brand-logo cyan-text text-lighten-5" style="padding-left: 20px;">Where's The Stream?</a>
+                <ul id="nav-mobile" class="right valign-margin" style="padding-right: 20px;">
+                    <li>
+                        <form action="/searching" method="POST" style="margin-right: 20px;">
+                            <div class="input-field col s4">
+                                <i class="material-icons prefix">search</i>
+                                <input type="text" name="query" class="center-align cyan-text text-lighten-5" style="box-shadow: 0 1px 0 0 cyan;">
+                            </div>
+                        </form>        
+                    </li>
+                    <li>
+                        <a href="/" class="waves-effect waves-light btn blue lighten-4 blue-grey-text text-darken-4">Home</a>
+                    </li>
+                    <li>
+                        <a href="/logout" class="btn waves-effect waves-light blue darken-2 cyan-text text-lighten-5">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container">
+            <div class="row valign-wrapper">
+                <div class="col">
+                    <h3>Welcome <span class="blue-text text-darken-2">{{ user.username }}</span>!</h3>
+                </div>
+                <div class="col offset-s5">
+                    <a href="/edituser/{{ session['user_id'] }}" class="waves-effect waves-light btn deep-orange lighten-1 cyan-text text-lighten-5">Edit Account</a>
+                </div>
+            </div>
+            <div class="row">
+                <h5>Favorited Shows:</h5>
+            </div>
+            <div class="row">
+                {% for row in favorites %}
+                <div class="col s2">
+                    <a href="/{{ row['watchmode_id'] }}/processing">
+                        <img src="{{ row['poster_link'] }}" height="192px" alt="{{ row['title'] }}">
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+            <!-- <div class="row">
+                {% for row in favorites %}
+                    <div class="col s2">
+                        <a href="/{{ row['watchmode_id'] }}/processing">
+                            {{ row['title'] }}
+                        </a>
+                    </div>
+                {% endfor %} -->
+            </div>
+        </div>
+
+
+
+        <!-- Materialize JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    </body>
+</html>

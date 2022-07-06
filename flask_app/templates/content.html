@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Where's The Stream?</title>
+        <!-- Materialize CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <!-- Materialize Icons -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!-- jQuery -->
+        <script type = "text/javascript" src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    </head>
+    <body class="blue-grey darken-4 cyan-text text-lighten-5">
+        <nav style="margin-bottom: 10px;">
+            <div class="nav-wrapper deep-orange lighten-1">
+                <a href="/" class="brand-logo cyan-text text-lighten-5" style="padding-left: 20px;">Where's The Stream?</a>
+                <ul id="nav-mobile" class="right valign-margin" style="padding-right: 20px;">
+                    <li>
+                        <form action="/searching" method="POST" style="margin-right: 20px;">
+                            <div class="input-field col s4">
+                                <i class="material-icons prefix">search</i>
+                                <input type="text" name="query" class="center-align cyan-text text-lighten-5" style="box-shadow: 0 1px 0 0 cyan;">
+                            </div>
+                        </form>        
+                    </li>
+                    {% if 'user_id' in session %}
+                        <li>
+                            <a href="/dashboard" class="waves-effect waves-light btn blue lighten-4 blue-grey-text text-darken-4">Dashboard</a>
+                        </li>
+                    {% endif %}
+                    <li>
+                        {% if 'user_id' not in session %}
+                            <a href="/login" class="btn waves-effect waves-light blue darken-2 cyan-text text-lighten-5">Login/Register</a>
+                        {% else %}
+                            <a href="/logout" class="btn waves-effect waves-light blue darken-2 cyan-text text-lighten-5">Logout</a>
+                        {% endif %}
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container center-align">
+            <div class="row valign-wrapper">
+                <div class="col s8 offset-s1">
+                    <h3>{{ results['title'] }}</h3>
+                </div>
+                <div class="col">
+                    {% if 'user_id' in session %}
+                        {% if favorites == None %}
+                            <a href="/favorite/{{ results['id'] }}" class="btn-floating waves-effect waves-light deep-orange lighten-1"><i class="material-icons cyan-text text-lighten-5">star_border</i></a>
+                        {% else %}
+                            <a href="/favorite/{{ results['id'] }}" class="btn-floating waves-effect waves-light deep-orange lighten-1"><i class="material-icons cyan-text text-lighten-5">star</i></a>
+                        {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col offset-s1">
+                    <img src="{{ results['poster'] }}" alt="{{ results['title'] }} Poster">
+                </div>
+                <div class="col s6 offset-s1">
+                    <ul class="collapsible popout">
+                        <li>
+                            <div class="collapsible-header cyan lighten-5 blue-grey-text text-darken-4"><i class="material-icons blue-grey-text text-darken-4">hd</i>HD</div>
+                            <div class="collapsible-body">
+                                <table class="grey-text text-lighten-5">
+                                    <thead>
+                                        <tr>
+                                            <th>Service Name:</th>
+                                            <th>Transaction:</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for row in results['sources'] %}
+                                            {% if row['format'] == "HD" %}
+                                                <tr>
+                                                    <td>
+                                                        <a href="{{ row['web_url'] }}" class="deep-orange-text text-accent-2">
+                                                            {{ row['name'] }}
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        {{ row['type'] }}
+                                                    </td>
+                                                </tr>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="collapsible-header cyan lighten-5 blue-grey-text text-darken-4"><i class="material-icons blue-grey-text text-darken-4">sd</i>SD</div>
+                            <div class="collapsible-body">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Service Name:</th>
+                                            <th>Transaction:</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for row in results['sources'] %}
+                                            {% if row['format'] == "SD" %}
+                                                <tr>
+                                                    <td>
+                                                        <a href="{{ row['web_url'] }}" class="deep-orange-text text-accent-2">
+                                                            {{ row['name'] }}
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        {{ row['type'] }}
+                                                    </td>
+                                                </tr>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <p>
+                    <span style="font-weight: bold;">Description:</span>  {{ results['plot_overview'] }}
+                </p>
+            </div>
+            <div class="row">
+                <div class="col offset-s2">
+                    <img class="responsive-img" src="{{ results['backdrop'] }}" alt="{{ results['title'] }} Image">
+                </div>
+            </div>
+
+        </div>
+        
+        <!-- JS Static File -->
+        <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
+        <!-- Materialize JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    </body>
+</html>

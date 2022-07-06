@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Where's The Stream?</title>
+        <!-- Materialize CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <!-- Materialize Icons -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    </head>
+    <body class="blue-grey darken-4 cyan-text text-lighten-5">
+        <nav>
+            <div class="nav-wrapper deep-orange lighten-1">
+                <a href="/" class="brand-logo cyan-text text-lighten-5" style="padding-left: 20px;">Where's The Stream?</a>
+                <ul id="nav-mobile" class="right" style="padding-right: 20px;">
+                    <li>
+                        <a href="/dashboard" class="waves-effect waves-light btn blue lighten-4 blue-grey-text text-darken-4">Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="/logout" class="btn waves-effect waves-light blue darken-2 cyan-text text-lighten-5">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container">
+            <div class="row">
+                <div class="col s10 offset-s1">
+                    <h1 class="center-align">Edit User <span class="blue-text text-darken-2">{{ user.username }}</span></h1>
+                </div>
+            </div>
+            <div class="row">
+                <form action="/edituser/{{user.id}}/processing" method="POST">
+                    <!-- <input type="hidden" name="id" value="{{user.user_id}}"> -->
+                    <div class="input-field">
+                        <label for="username" class="cyan-text text-lighten-5">Username:</label>
+                        <input type="text" name="username" id="username" value="{{user.username}}" class="cyan-text text-lighten-5">
+                    </div>
+                    <div class="input-field">
+                        <label for="email" class="cyan-text text-lighten-5">Email Address:</label>
+                        <input type="text" name="email" id="email" value="{{user.email}}" class="cyan-text text-lighten-5">
+                    </div>
+                    <button class="btn waves-effect waves-light deep-orange lighten-1 cyan-text text-lighten-5" type="submit" name="action">Submit Changes
+                        <i class="material-icons right">send</i>
+                    </button>
+                </form>
+            </div>
+        </div>
+        <!-- Materialize JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    </body>
+</html>

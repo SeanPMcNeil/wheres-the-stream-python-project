@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>TV Shows | Login & Registration</title>
+        <!-- Materialize CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <!-- Materialize Icons-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    </head>
+    <body class="blue-grey darken-4 cyan-text text-lighten-5">
+        <nav>
+            <div class="nav-wrapper deep-orange lighten-1">
+                <a href="/" class="brand-logo cyan-text text-lighten-5" style="padding-left: 20px;">Where's The Stream?</a>
+                <ul id="nav-mobile" class="right" style="padding-right: 20px;">
+                    <li>
+                        <a href="/" class="waves-effect waves-light btn blue lighten-4 blue-grey-text text-darken-4">Home</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="row" style="margin-top: 10px;">
+
+                <!-- Registration Column -->
+                <div class="col s4 offset-s1">
+
+                    <h3 class="blue-text text-darken-2">Register</h3>
+                    <!-- Error Flash Messages -->
+                    <div class="row deep-orange lighten-1 cyan-text text-lighten-5">
+                        {% with messages = get_flashed_messages(category_filter=["registration"]) %}
+                            {% if messages %}
+                                <ul>
+                                    {% for message in messages %}
+                                        <li>{{ message }}</li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        {% endwith %}
+                    </div>
+                    <!-- Registration Form -->
+                    <form action="/register/user" method="POST">
+
+                        <label for="username" class="cyan-text text-lighten-5">Username:</label>
+                        <input type="text" name="username" id="username" class="cyan-text text-lighten-5">
+
+                        <label for="email" class="cyan-text text-lighten-5">Email:</label>
+                        <input type="text" name="email" id="email" class="cyan-text text-lighten-5">
+
+                        <label for="password" class="cyan-text text-lighten-5">Password:</label>
+                        <input type="password" name="password" id="password" class="cyan-text text-lighten-5">
+
+                        <label for="pass_confirm" class="cyan-text text-lighten-5">Confirm Password:</label>
+                        <input type="password" name="confirm_password" id="confirm_password" class="cyan-text text-lighten-5">
+
+                        <button class="btn btn-large waves-effect waves-light blue darken-2 cyan-text text-lighten-5" type="submit" name="action" style="margin-bottom: 5px;">Register
+                            <i class="material-icons right">send</i>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Login Column -->
+                <div class="col s4 offset-s1">
+                    <h3 class="deep-orange-text text-lighten-1">Login</h3>
+                    <!-- Error Flash Messages -->
+                    <div class="row red white-text">
+                        {% with messages = get_flashed_messages(category_filter=["login"]) %}
+                            {% if messages %}
+                                <ul>
+                                    {% for message in messages %}
+                                        <li>{{ message }}</li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        {% endwith %}
+                    </div>
+                    <!-- Login Form -->
+                    <form action="/login" method="POST">
+
+                        <label for="email" class="cyan-text text-lighten-5">Email:</label>
+                        <input type="text" name="email" id="email" class="cyan-text text-lighten-5">
+
+                        <label for="password" class="cyan-text text-lighten-5">Password:</label>
+                        <input type="password" name="password" id="password" class="cyan-text text-lighten-5">
+
+                        <button class="waves-effect waves-light btn btn-large deep-orange lighten-1 blue-grey-text text-darken-4" type="submit" name="action" style="margin-bottom: 5px;">Login
+                            <i class="material-icons right">login</i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Materialize JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    </body>
+</html>
