@@ -1,7 +1,7 @@
 # Where's The Stream?
+## Try it out [Here](http://54.159.4.216/)
 ### A video streaming service finder web app
 ### Built using Python & Flask
-### Try it out [Here](http://54.159.4.216/)
 
 #### Search Feature Screenshot
 ![Search](https://user-images.githubusercontent.com/23509634/177607431-b70b3bee-d8fa-404c-aaeb-288eb8ad0e6c.png)
