@@ -16,7 +16,8 @@
         <nav>
             <div class="nav-wrapper deep-orange lighten-1">
                 <a href="/" class="brand-logo cyan-text text-lighten-5" style="padding-left: 20px;">Where's The Stream?</a>
-                <ul id="nav-mobile" class="right valign-margin" style="padding-right: 20px;">
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down" style="padding-right: 20px;">
                     <li>
                         <form action="/searching" method="POST" style="margin-right: 20px;">
                             <div class="input-field col s4">
@@ -34,6 +35,24 @@
                 </ul>
             </div>
         </nav>
+
+        <ul id="mobile-demo" class="sidenav">
+            <li>
+                <form action="/searching" method="POST" style="margin-right: 20px;">
+                    <div class="input-field col s4">
+                        <i class="material-icons prefix">search</i>
+                        <input type="text" name="query" class="center-align cyan-text text-lighten-5" style="box-shadow: 0 1px 0 0 cyan;">
+                    </div>
+                </form>        
+            </li>
+            <li>
+                <a href="/" class="waves-effect waves-light btn blue lighten-4 blue-grey-text text-darken-4">Home</a>
+            </li>
+            <li>
+                <a href="/logout" class="btn waves-effect waves-light blue darken-2 cyan-text text-lighten-5">Logout</a>
+            </li>
+        </ul>
+
         <div class="container">
             <div class="row valign-wrapper">
                 <div class="col">
@@ -48,7 +67,7 @@
             </div>
             <div class="row">
                 {% for row in favorites %}
-                <div class="col s2">
+                <div class="col s3">
                     <a href="/{{ row['watchmode_id'] }}/processing">
                         <img src="{{ row['poster_link'] }}" height="192px" alt="{{ row['title'] }}">
                     </a>
@@ -66,8 +85,8 @@
             </div>
         </div>
 
-
-
+        <!-- JS Static File -->
+        <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
         <!-- Materialize JS -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     </body>

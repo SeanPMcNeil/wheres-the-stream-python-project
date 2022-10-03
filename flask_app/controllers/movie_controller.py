@@ -1,5 +1,5 @@
 from flask_app import app
-from flask import render_template, request, redirect, session, flash, jsonify
+from flask import render_template, request, redirect, session, flash, jsonify, url_for
 import requests, os
 from flask_app.models.movie import Movie
 
@@ -44,11 +44,13 @@ def search():
 def movie_processing(id):
 
     r = requests.get(f"https://api.watchmode.com/v1/title/{id}/details/?apiKey={os.environ.get('WATCHMODE_API_KEY')}&append_to_response=sources")
-    
+
+
     if 'one_result' in session:
         session.pop('one_result')
     session['one_result'] = r.json()
-    return redirect(f'/{id}')
+
+    return redirect(url_for("one_movie", id = id))
 
 @app.route('/<int:id>')
 def one_movie(id):

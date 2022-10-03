@@ -1,5 +1,9 @@
 a:hover img{
-    transform: scale(1.5);
+    transform: scale(1.2);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     transition-duration: .5s;
+}
+
+.sidenav {
+    background-color: #ff7043;
 }
