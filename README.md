@@ -1,6 +1,4 @@
 # Where's The Stream?
-## Try it out [Here](http://54.159.4.216/)
-### Test Credentials - Email: user@gmail.com | Password: password
 ### A video streaming service finder web app
 ### Built using Python & Flask
 
